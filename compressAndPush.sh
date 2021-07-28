@@ -2,8 +2,8 @@
 targetPath=''
 unit=$(expr 1024 \* 1024)
 gitDir=''
-fileName='filename.tar.gz'
-while getopts ":a:b:c:d" opt; do
+
+while getopts ":a:b:c:h" opt; do
   # shellcheck disable=SC2220
   case $opt in
   a)
@@ -22,9 +22,9 @@ while getopts ":a:b:c:d" opt; do
     gitDir=$(pwd)
     cd $curPath
     ;;
-  d)
-    echo "参数d:$OPTARG"
-    fileName=$OPTARG
+  h)
+    printf "%s\n\t%s\n\t%s\n\t%s\n" '使用说明:' '-a 将压缩的文件或目录' "-b 每卷文件大小(B)" "-c git目录"
+    exit 1
     ;;
   esac
 done
@@ -46,5 +46,6 @@ for file in $listFileStr; do
   git add $file
   git status
   git commit -m 'add'$file
-  git push origin master
+  #git push origin master
+  git push
 done
