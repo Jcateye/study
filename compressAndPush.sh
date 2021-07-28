@@ -34,7 +34,7 @@ if test -z $gitDir; then
 fi
 pwd
 tar -zcvf 'filename.tar.gz' $targetPath
-split -b ${unit} -d -a 1 'filename.tar.gz' 'filename.tar.gz.'
+split -b ${unit} -d 'filename.tar.gz' 'filename.tar.gz.'
 curPath=$(pwd)
 rm -f 'filename.tar.gz'
 mv "filename.tar.gz."* $gitDir
